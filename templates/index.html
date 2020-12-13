@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Download YouTube and Instagram videos including reels">
+    <meta name="keywords" content="download, youtube, downloader, instagram, reels, video, audio, mp3, song">
+    <meta name="author" content="Prasad Poojary">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.css')}}">
+    <title>LOADBASE</title>
+    <link rel="icon" href="{{url_for('static',filename='compact-disc-solid.svg')}}" type="image/icon type">
+</head>
+<body>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="message-container" id="message-contID" style="z-index:99;">
+        {% for message in messages %}
+        <div class="message">
+            <p id="msgtxt">{{message}}</p>
+            <button onclick="closeMessage();">OK</button>
+        </div>
+        {% endfor %}
+    </div>
+  {% endif %}
+  {% endwith %}
+    <div class="head">
+        <h1>L<i class="fa fa-compact-disc" style="font-size: 30px;"></i>AD<span>BASE</span></h1>
+    </div>
+    
+    <div class="nav-container">
+        <ul>
+            <li><button class="instagram"><i class="fab fa-instagram"></i> Instagram</button></li>
+            <li><button class="youtube"><i class="fab fa-youtube"></i> YouTube</button></li>
+        </ul>
+    </div>
+    <div class="searchbar">
+        <form action="" method="POST">
+            <div class="form">
+                <input placeholder="Paste your link" name="url"/>
+                <button type="submit"><a href="" class="search"><i class="fa fa-search"></i></a></button>
+            </div>
+        </form>
+    </div>
+
+    <div class="issue">
+        <p>Facing any issues ? feel free to <a href="mailto:prasadpoojary815@gmail.com">inform</a></p>
+    </div>
+   <div class="footer">
+        <p><span>Developed by</span> Prasad<span style="font-size: 13px;color:rgb(0, 255, 13);">&#9829;</span>Poojary</p>
+    </div>
+    <script src="{{url_for('static',filename='jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='anim.js')}}"></script>
+    <script>
+    // display and close the message
+     if(document.getElementById("msgtxt").innerText.length>0)
+     {
+         document.getElementById("message-contID").style.display="flex";
+     }
+     
+     function closeMessage()
+     {
+         document.getElementById("message-contID").style.display="none";
+         document.getElementById("msgtxt").innerText="";
+     }
+    </script>
+</body>
+</html>

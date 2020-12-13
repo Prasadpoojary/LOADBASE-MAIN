@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='youtube.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.css')}}">
+    <title>LOADBASE | YouTube</title>
+    <link rel="icon" href="{{url_for('static',filename='compact-disc-solid.svg')}}" type="image/icon type">
+</head>
+<body>
+    <div class="message-container" id="message-contID" style="z-index:99;">
+        {% if message %}
+        <div class="message">
+            <p id="msgtxt">{{message}}</p>
+            <button onclick="closeMessage();">OK</button>
+        </div>
+        {% endif %}
+    </div>
+    <div class="head">
+        <h1>L<i class="fa fa-compact-disc" style="font-size: 30px;"></i>AD<span>BASE</span></h1>
+    </div>
+    <div class="nav-container">
+        <ul>
+            <li><button class="video"><i class="fa fa-video"></i> Video</button></li>
+            <li><button class="audio"><i class="fa fa-music"></i> Audio</button></li>
+        </ul>
+    </div>
+
+    <!-- video -->
+    
+    <div class="videoContainer">
+        <table>
+            <tbody>
+            {% if result['1080p'] !=None %}
+                <tr>
+                    <td><span>HD</span>1080p</td>
+                    <td>{{result['1080psize']}} MB</td>
+                     <td>
+                         <form action="/download" method="post">
+                            <input name="url" type="hidden" value="{{result['1080p'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if result['720p'] !=None %}
+                <tr>
+                    <td><span>HD</span>720p</td>
+                    <td>{{result['720psize']}} MB</td>
+                   <td>
+                         <form action="/download" method="post">
+                            <input name="url" type="hidden" value="{{result['720p'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if result['480p'] !=None %}
+                <tr>
+                    <td>480p</td>
+                    <td>{{result['480psize']}} MB</td>
+                     <td>
+                         <form action="/download" method="post">
+                            <input name="url" type="hidden" value="{{result['480p'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            {% if result['360p'] !=None %}
+                <tr>
+                    <td>360p</td>
+                    <td>{{result['360psize']}} MB</td>
+                     <td>
+                         <form action="/download" method="post">
+                            <input name="url" type="hidden" value="{{result['360p'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Audio -->
+    <div class="audioContainer">
+        <table>
+            <tbody>
+            {% if result['audiomp4']!= None %}
+                <tr>
+                    <td>audio/mp4</td>
+                    <td>{{result['audiomp4size']}} MB</td>
+                     <td>
+                         <form action="/download-audio" method="post">
+                            <input name="url" type="hidden" value="{{result['audiomp4'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+             {% if result['audiowebm']!= None %}
+                <tr>
+                    <td>audio/webm</td>
+                    <td>{{result['audiowebmsize']}} MB</td>
+                     <td>
+                         <form action="/download-audio" method="post">
+                            <input name="url" type="hidden" value="{{result['audiowebm'].url}}">
+                            <button type="submit" style="cursor:pointer;outline:none;border:none;background: transparent;"><a class="link" >download</a></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="issue">
+        <p>Facing any issues ? feel free to <a href="mailto:prasadpoojary815@gmail.com">inform</a></p>
+    </div>
+   <div class="footer">
+        <p><span>Developed by</span> Prasad<span style="font-size: 13px;color:rgb(0, 255, 13);">&#9829;</span>Poojary</p>
+    </div>
+    <script src="{{url_for('static',filename='jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='anim.js')}}"></script>
+    <script>
+    // display and close the message
+     if(document.getElementById("msgtxt").innerText.length>0)
+     {
+         document.getElementById("message-contID").style.display="flex";
+     }
+     
+     function closeMessage()
+     {
+         document.getElementById("message-contID").style.display="none";
+         document.getElementById("msgtxt").innerText="";
+     }
+    </script>
+</body>
+</html>
+
+

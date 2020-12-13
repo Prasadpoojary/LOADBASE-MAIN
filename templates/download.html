@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='download.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='fontawesome/css/all.css')}}">
+    <title>LOADBASE | Download</title>
+    <link rel="icon" href="{{url_for('static',filename='compact-disc-solid.svg')}}" type="image/icon type">
+</head>
+<body>
+    <div class="message-container" id="message-contID">
+        <div class="message">
+            <p id="msgtxt">Please click on 3 dots to Download</p>
+            <button onclick="closeMessage();">OK</button>
+        </div>
+    </div>
+    <div class="head">
+        <h1>L<i class="fa fa-compact-disc" style="font-size: 30px;"></i>AD<span>BASE</span></h1>
+    </div>
+     <div class="instruction">
+        <p>Please click on the 3 dots to Download video <p>
+    </div>
+    <div class="video-container">
+        <video id="video" autoplay="" name="media" controls disablePictureInPicture >
+            <source src="{{video_url}}" type="video/mp4" >
+        </video> 
+    </div>   
+
+    
+   
+   <div class="footer">
+        <p><span>Developed by</span> Prasad<span style="font-size: 13px;color:rgb(0, 255, 13);">&#9829;</span>Poojary</p>
+    </div>
+    <script src="{{url_for('static',filename='jquery.js')}}"></script>
+    <script src="{{url_for('static',filename='anim.js')}}"></script>
+    <script>
+    // display and close the message
+     if(document.getElementById("msgtxt").innerText.length>0)
+     {
+         document.getElementById("message-contID").style.display="flex";
+     }
+     
+     function closeMessage()
+     {
+         document.getElementById("message-contID").style.display="none";
+         document.getElementById("msgtxt").innerText="";
+     }
+    </script>
+</body>
+</html>
